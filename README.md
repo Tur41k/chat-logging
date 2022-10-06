@@ -5,6 +5,8 @@ It also allows you to automatically save all SMS messages sent to you in the gam
 
 The script requires CLEO 4+, SAMPFUNCS 5+ and samp event libraries.
 
+Script menu implemented on imgui
+
 ## Description of the script
 
 **To view logged messages, you need to enter the command in the game:** 
@@ -17,6 +19,6 @@ The script requires CLEO 4+, SAMPFUNCS 5+ and samp event libraries.
 
 ![Screenshot_2](https://user-images.githubusercontent.com/115162722/194354393-94b0c98b-59ee-4384-bb64-9a93084ce400.png)
 
-The script also has a text search; for this, a search is implemented in the script menu.
+There is a search in the text in the script, in the corresponding menu there is a special field for this.
 
 ![Screenshot_3](https://user-images.githubusercontent.com/115162722/194354659-c999bff7-1cfd-4e75-afd6-0c1958a9680e.png)
