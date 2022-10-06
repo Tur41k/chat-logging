@@ -1,11 +1,9 @@
--- Copyright (c) 2021 Tur41ks Prod.
+-- Copyright (c) 2022 Tur41ks Prod.
 
--- Информация о скрипте
-script_name('«Chatlog»')
+script_name('В«ChatlogВ»')
 script_version(1)
 script_author('Henrich_Rogge')
 
--- Библиотеки
 require 'lib.moonloader'
 require 'lib.sampfuncs'
 
@@ -40,7 +38,7 @@ function main()
 	if not isSampfuncsLoaded() or not isSampLoaded() then return end
 	if not doesDirectoryExist('moonloader/CHAT-LOG') then createDirectory('moonloader/CHAT-LOG') end
 	while not isSampAvailable() do wait(0) end 
-	stext('Скрипт успешно загружен! Команды скрипта - /clog or /slog')
+	stext('РЎРєСЂРёРїС‚ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅ! РљРѕРјР°РЅРґС‹ СЃРєСЂРёРїС‚Р° - /clog or /slog')
 	if doesFileExist('moonloader/CHAT-LOG/smslog.txt') then 
     local file = io.open('moonloader/CHAT-LOG/smslog.txt', 'r')
 		tablesmslog = decodeJson(file:read('*a'))
@@ -75,15 +73,15 @@ function sampevents.onServerMessage(color, text)
 		local colors = ("{%06X}"):format(bit.rshift(color, 8))
     table.insert(tablechatlog, os.date(colors.."[%H:%M:%S] ") .. text)
   end
-	if color == -65366 and (text:match('SMS%: .+. Отправитель%: .+') or text:match('SMS%: .+. Получатель%: .+') or text:match('SMS%: .+ Отправитель%: .+') or text:match('SMS%: .+ Получатель%: .+')) then
-		if text:match('SMS%: .+. Отправитель%: .+%[%d+%]') then 
-			ONEsmsid = text:match('SMS%: .+. Отправитель%: .+%[(%d+)%]') 
-		elseif text:match('SMS%: .+. Получатель%: .+%[%d+%]') then 
-			ONEsmstoid = text:match('SMS%: .+. Получатель%: .+%[(%d+)%]') 
-		elseif text:match('SMS%: .+ Отправитель%: .+%[%d+%]') then 
-			TWOsmsid = text:match('SMS%: .+ Отправитель%: .+%[(%d+)%]') 
-		elseif text:match('SMS%: .+ Получатель%: .+%[%d+%]') then 
-			TWOsmstoid = text:match('SMS%: .+ Получатель%: .+%[(%d+)%]') 
+	if color == -65366 and (text:match('SMS%: .+. РћС‚РїСЂР°РІРёС‚РµР»СЊ%: .+') or text:match('SMS%: .+. РџРѕР»СѓС‡Р°С‚РµР»СЊ%: .+') or text:match('SMS%: .+ РћС‚РїСЂР°РІРёС‚РµР»СЊ%: .+') or text:match('SMS%: .+ РџРѕР»СѓС‡Р°С‚РµР»СЊ%: .+')) then
+		if text:match('SMS%: .+. РћС‚РїСЂР°РІРёС‚РµР»СЊ%: .+%[%d+%]') then 
+			ONEsmsid = text:match('SMS%: .+. РћС‚РїСЂР°РІРёС‚РµР»СЊ%: .+%[(%d+)%]') 
+		elseif text:match('SMS%: .+. РџРѕР»СѓС‡Р°С‚РµР»СЊ%: .+%[%d+%]') then 
+			ONEsmstoid = text:match('SMS%: .+. РџРѕР»СѓС‡Р°С‚РµР»СЊ%: .+%[(%d+)%]') 
+		elseif text:match('SMS%: .+ РћС‚РїСЂР°РІРёС‚РµР»СЊ%: .+%[%d+%]') then 
+			TWOsmsid = text:match('SMS%: .+ РћС‚РїСЂР°РІРёС‚РµР»СЊ%: .+%[(%d+)%]') 
+		elseif text:match('SMS%: .+ РџРѕР»СѓС‡Р°С‚РµР»СЊ%: .+%[%d+%]') then 
+			TWOsmstoid = text:match('SMS%: .+ РџРѕР»СѓС‡Р°С‚РµР»СЊ%: .+%[(%d+)%]') 
 		end
 		local colors = ("{%06X}"):format(bit.rshift(color, 8))
 		table.insert(tablesmslog, os.date(colors.."[%d/%m/%Y - %X] ") .. text)
@@ -97,7 +95,7 @@ function imgui.OnDrawFrame()
 		imgui.SetNextWindowSize(imgui.ImVec2(950, 610), imgui.Cond.FirstUseEver)   
 		imgui.Begin(u8(thisScript().name..' | Version: '..thisScript().version), window['chatlog'].bool, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoCollapse)
 		imgui.PushItemWidth(250)
-		imgui.Text(u8('Поиск по тексту | Find in text'))
+		imgui.Text(u8('РџРѕРёСЃРє РїРѕ С‚РµРєСЃС‚Сѓ | Find in text'))
 		imgui.InputText('##inptext', searchchatlog)
 		imgui.PopItemWidth()
 		imgui.Separator()
@@ -163,7 +161,7 @@ function imgui.OnDrawFrame()
 		imgui.SetNextWindowSize(imgui.ImVec2(950, 610), imgui.Cond.FirstUseEver)   
 		imgui.Begin(u8(thisScript().name..' | SMS | Version: '..thisScript().version), window['smslog'].bool, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoCollapse)
 		imgui.PushItemWidth(250)
-		imgui.Text(u8('Поиск по тексту | Find in text'))
+		imgui.Text(u8('РџРѕРёСЃРє РїРѕ С‚РµРєСЃС‚Сѓ | Find in text'))
 		imgui.InputText('##inptext', searchsmslog)
 		imgui.PopItemWidth()
 		imgui.Separator()
@@ -226,7 +224,7 @@ function imgui.OnDrawFrame()
   end
 end
 
--- Сохраняем информацию
+-- РЎРѕС…СЂР°РЅСЏРµРј РёРЅС„РѕСЂРјР°С†РёСЋ
 function saveData(table, path)
 	if doesFileExist(path) then 
 		os.remove(path) 
@@ -239,7 +237,7 @@ function saveData(table, path)
 end
 
 function rusUpper(string)
-	local russian_characters = { [168] = 'Ё', [184] = 'ё', [192] = 'А', [193] = 'Б', [194] = 'В', [195] = 'Г', [196] = 'Д', [197] = 'Е', [198] = 'Ж', [199] = 'З', [200] = 'И', [201] = 'Й', [202] = 'К', [203] = 'Л', [204] = 'М', [205] = 'Н', [206] = 'О', [207] = 'П', [208] = 'Р', [209] = 'С', [210] = 'Т', [211] = 'У', [212] = 'Ф', [213] = 'Х', [214] = 'Ц', [215] = 'Ч', [216] = 'Ш', [217] = 'Щ', [218] = 'Ъ', [219] = 'Ы', [220] = 'Ь', [221] = 'Э', [222] = 'Ю', [223] = 'Я', [224] = 'а', [225] = 'б', [226] = 'в', [227] = 'г', [228] = 'д', [229] = 'е', [230] = 'ж', [231] = 'з', [232] = 'и', [233] = 'й', [234] = 'к', [235] = 'л', [236] = 'м', [237] = 'н', [238] = 'о', [239] = 'п', [240] = 'р', [241] = 'с', [242] = 'т', [243] = 'у', [244] = 'ф', [245] = 'х', [246] = 'ц', [247] = 'ч', [248] = 'ш', [249] = 'щ', [250] = 'ъ', [251] = 'ы', [252] = 'ь', [253] = 'э', [254] = 'ю', [255] = 'я', }
+	local russian_characters = { [168] = 'РЃ', [184] = 'С‘', [192] = 'Рђ', [193] = 'Р‘', [194] = 'Р’', [195] = 'Р“', [196] = 'Р”', [197] = 'Р•', [198] = 'Р–', [199] = 'Р—', [200] = 'Р', [201] = 'Р™', [202] = 'Рљ', [203] = 'Р›', [204] = 'Рњ', [205] = 'Рќ', [206] = 'Рћ', [207] = 'Рџ', [208] = 'Р ', [209] = 'РЎ', [210] = 'Рў', [211] = 'РЈ', [212] = 'Р¤', [213] = 'РҐ', [214] = 'Р¦', [215] = 'Р§', [216] = 'РЁ', [217] = 'Р©', [218] = 'РЄ', [219] = 'Р«', [220] = 'Р¬', [221] = 'Р­', [222] = 'Р®', [223] = 'РЇ', [224] = 'Р°', [225] = 'Р±', [226] = 'РІ', [227] = 'Рі', [228] = 'Рґ', [229] = 'Рµ', [230] = 'Р¶', [231] = 'Р·', [232] = 'Рё', [233] = 'Р№', [234] = 'Рє', [235] = 'Р»', [236] = 'Рј', [237] = 'РЅ', [238] = 'Рѕ', [239] = 'Рї', [240] = 'СЂ', [241] = 'СЃ', [242] = 'С‚', [243] = 'Сѓ', [244] = 'С„', [245] = 'С…', [246] = 'С†', [247] = 'С‡', [248] = 'С€', [249] = 'С‰', [250] = 'СЉ', [251] = 'С‹', [252] = 'СЊ', [253] = 'СЌ', [254] = 'СЋ', [255] = 'СЏ', }
  	local strlen = string:len()
 	if strlen == 0 then return string end
 	string = string:upper()
@@ -313,7 +311,7 @@ function onScriptTerminate(LuaScript, quitGame)
 		showCursor(false)
 		lua_thread.create(function()
 			saveData(tablesmslog, 'moonloader/CHAT-LOG/smslog.txt')
-			print('Скрипт выключился. Настройки сохранены.')
+			print('РЎРєСЂРёРїС‚ РІС‹РєР»СЋС‡РёР»СЃСЏ. РќР°СЃС‚СЂРѕР№РєРё СЃРѕС…СЂР°РЅРµРЅС‹.')
 		end)
   	end
 end
