@@ -3,7 +3,7 @@ The Moonloader script allows you to save all chat messages for the current sessi
 
 It also allows you to automatically save all SMS messages sent to you in the game for a week, then the save file will need to be manually cleared (deleted)
 
-The script requires CLEO 4+, SAMPFUNCS 5+ and samp event libraries.
+The script requires CLEO 4+, SAMPFUNCS 5+, samp event and imgui libraries.
 
 Script menu implemented on imgui
 
